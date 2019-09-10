@@ -16,7 +16,7 @@ namespace TechnicalRadiation.Repositories.Data
                 Title = "Þurfa að synda í gegn­um stór­an olíuflekk",
 
                 ImgSource = "https://cdn.mbl.is/frimg/1/15/70/1157040.jpg",
-                shortDescription = "Fólk að synda"
+                ShortDescription = "Fólk að synda"
                 //_links,
             },
             new NewsItem
@@ -25,7 +25,7 @@ namespace TechnicalRadiation.Repositories.Data
                 Title = "Þurfa að synda í gegn­um stór­an olíuflekk",
 
                 ImgSource = "https://cdn.mbl.is/frimg/1/15/70/1157040.jpg",
-                shortDescription = "Fólk að synda"
+                ShortDescription = "Fólk að synda"
                 //_links,
             },
             new NewsItem
@@ -34,10 +34,10 @@ namespace TechnicalRadiation.Repositories.Data
                 Title = "Þurfa að synda í gegn­um stór­an olíuflekk",
 
                 ImgSource = "https://cdn.mbl.is/frimg/1/15/70/1157040.jpg",
-                shortDescription = "Fólk að synda"
+                ShortDescription = "Fólk að synda"
                 //_links,
-            },
-        },
+            }
+        };
         //authors
         private static List<NewsItemAuthor> NewsItemAuthors = new List<NewsItemAuthor>
         {
@@ -58,8 +58,8 @@ namespace TechnicalRadiation.Repositories.Data
                 AuthorId = 3,
                 NewsItemId = 3
 
-            },
-        },
+            }
+        };
         //categories
         private static List<NewsItemCategories> NewsItemCategoriess = new List<NewsItemCategories>
         {
@@ -67,7 +67,7 @@ namespace TechnicalRadiation.Repositories.Data
             {
                 CategoryId = 1,
                 NewsItem = 1
-            },
-        }
+            }
+        };
     }
 }

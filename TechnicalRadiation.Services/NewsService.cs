@@ -26,5 +26,21 @@ namespace TechnicalRadiation.Services
        public NewsItemDto CreateNewNews( NewsItemInputModel model ) {
            return _NewsRepo.CreateNewNews(model);
        }
+
+        public NewsItemDto GetNewsById(int id)
+        {
+            return _NewsRepo.GetNewsById(id);
+        }
+
+        public void UpdateNewsById(NewsItemInputModel input ,int id){
+            _NewsRepo.UpdateNewsById(input , id);
+        }
+
+
+
+        public void DeleteNewsById(int id)
+        {
+            _NewsRepo.DeleteNewsById(id);
+        }
     }
 }

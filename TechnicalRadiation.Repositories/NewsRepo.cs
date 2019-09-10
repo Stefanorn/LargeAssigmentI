@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TechnicalRadiation.Models.Dtos;
 using TechnicalRadiation.Models.Entities;
 using TechnicalRadiation.Models.InputModels;
@@ -46,5 +47,28 @@ namespace TechnicalRadiation.Repositories
                ShortDescription = model.ShortDescription,
            };
        }
+
+        public void DeleteNewsById(int id)
+        {
+            DataProvider.newsItems.RemoveAll(r => r.Id == id);
+        }
+
+        public NewsItemDto GetNewsById(int id)
+        {
+            var entity = DataProvider.newsItems.FirstOrDefault(r => r.Id == id);
+            if (entity == null) { return null; /* throw some exception */ }
+            return new NewsItemDto(){};
+        }
+
+        public void UpdateNewsById( NewsItemInputModel input, int id){
+            var entity = DataProvider.newsItems.FirstOrDefault(r => r.Id == id);
+            if (entity == null) { return; /* throw some exception */ }
+            entity.Title = input.Title;
+            entity.ImgSource = input.ImgSource;
+            entity.ShortDescription = input.ShortDescription;
+            entity.LongDescription = input.LongDescription;
+            entity.PublishDate = input.PublishDate;
+            entity.ModifiedDate = DateTime.Now;
+        }
     }
 }

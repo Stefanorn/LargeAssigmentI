@@ -24,17 +24,30 @@ namespace TechnicalRadiation.webAPI.Controllers
             return Ok(_newsService.GetAllNews() );
         }
         
-        
         [Route("{id:int}", Name = "GetNewssById")]
-        [HttpDelete]
-        public IActionResult DeleteNews(int id){
-            return Ok();
+        [HttpGet]
+        public IActionResult GetNewsById(int id){
+            return Ok(_newsService.GetNewsById(id));
         }
 
         [Route("{id:int}", Name = "GetNewssById")]
-        [HttpPatch]
-        public IActionResult UpdateNews(int id){
-            return Ok();
+        [HttpDelete]
+        public IActionResult DeleteNews(int id){
+            if(!ModelState.IsValid){
+                return BadRequest("input model not valid");
+            }
+            _newsService.DeleteNewsById(id);
+            return NoContent();
+        }
+
+        [Route("{id:int}", Name = "GetNewssById")]
+        [HttpPut]
+        public IActionResult UpdateNewsById([FromBody] NewsItemInputModel input,  int id){
+            if(!ModelState.IsValid){
+                return BadRequest("input model not valid");
+            }
+            _newsService.UpdateNewsById(input,id);
+            return NoContent();
         }
 
         [Route("")]
@@ -43,8 +56,8 @@ namespace TechnicalRadiation.webAPI.Controllers
             if(!ModelState.IsValid){
                 return BadRequest("input model not valid");
             }
-            return Ok(_newsService.CreateNewNews(body));
-            //return CreatedAtRoute( Ge)
+            var news = _newsService.CreateNewNews(body);
+            return CreatedAtRoute( "GetNewssById", new { id = news.Id}, null );
         }
     }
 }

@@ -8,7 +8,7 @@ namespace TechnicalRadiation.Repositories.Data
     public class DataProvider
     {
         //newsitems
-        private static List<NewsItem> newsItems = new List<NewsItem>
+        public static List<NewsItem> newsItems = new List<NewsItem>
         {
             new NewsItem
             {
@@ -39,7 +39,7 @@ namespace TechnicalRadiation.Repositories.Data
             }
         };
         //authors
-        private static List<NewsItemAuthor> NewsItemAuthors = new List<NewsItemAuthor>
+        public static List<NewsItemAuthor> NewsItemAuthors = new List<NewsItemAuthor>
         {
             new NewsItemAuthor
             {
@@ -61,7 +61,7 @@ namespace TechnicalRadiation.Repositories.Data
             }
         };
         //categories
-        private static List<NewsItemCategories> NewsItemCategoriess = new List<NewsItemCategories>
+        public static List<NewsItemCategories> NewsItemCategoriess = new List<NewsItemCategories>
         {
             new NewsItemCategories
             {

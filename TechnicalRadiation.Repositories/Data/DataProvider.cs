@@ -20,7 +20,7 @@ namespace TechnicalRadiation.Repositories.Data
                 ShortDescription = "Fólk að synda",
                 LongDescription = "Long Description comes here",
                 PublishDate = DateTime.Now,
-                ModifiedBy = _adminName,00
+                ModifiedBy = _adminName,
                 CreatedDate = DateTime.Now,
                 ModifiedDate = DateTime.Now
                 
@@ -32,10 +32,10 @@ namespace TechnicalRadiation.Repositories.Data
                 Title = "Þurfa að synda í gegn­um stór­an olíuflekk",
 
                 ImgSource = "https://cdn.mbl.is/frimg/1/15/70/1157040.jpg",
-                ShortDescription = "Fólk að synda"
+                ShortDescription = "Fólk að synda",
                 LongDescription = "Long Description comes here",
                 PublishDate = DateTime.Now,
-                ModifiedBy = _adminName,00
+                ModifiedBy = _adminName,
                 CreatedDate = DateTime.Now,
                 ModifiedDate = DateTime.Now
                 //_links,
@@ -46,10 +46,10 @@ namespace TechnicalRadiation.Repositories.Data
                 Title = "Þurfa að synda í gegn­um stór­an olíuflekk",
 
                 ImgSource = "https://cdn.mbl.is/frimg/1/15/70/1157040.jpg",
-                ShortDescription = "Fólk að synda"
+                ShortDescription = "Fólk að synda",
                 LongDescription = "Long Description comes here",
                 PublishDate = DateTime.Now,
-                ModifiedBy = _adminName,00
+                ModifiedBy = _adminName,
                 CreatedDate = DateTime.Now,
                 ModifiedDate = DateTime.Now
  

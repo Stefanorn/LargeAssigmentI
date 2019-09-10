@@ -7,6 +7,7 @@ namespace TechnicalRadiation.Repositories.Data
 {
     public class DataProvider
     {
+        private static readonly string _adminName = "DBAdmin";
         //newsitems
         private static List<NewsItem> newsItems = new List<NewsItem>
         {
@@ -16,7 +17,13 @@ namespace TechnicalRadiation.Repositories.Data
                 Title = "Þurfa að synda í gegn­um stór­an olíuflekk",
 
                 ImgSource = "https://cdn.mbl.is/frimg/1/15/70/1157040.jpg",
-                ShortDescription = "Fólk að synda"
+                ShortDescription = "Fólk að synda",
+                LongDescription = "Long Description comes here",
+                PublishDate = DateTime.Now,
+                ModifiedBy = _adminName,00
+                CreatedDate = DateTime.Now,
+                ModifiedDate = DateTime.Now
+                
                 //_links,
             },
             new NewsItem
@@ -26,6 +33,11 @@ namespace TechnicalRadiation.Repositories.Data
 
                 ImgSource = "https://cdn.mbl.is/frimg/1/15/70/1157040.jpg",
                 ShortDescription = "Fólk að synda"
+                LongDescription = "Long Description comes here",
+                PublishDate = DateTime.Now,
+                ModifiedBy = _adminName,00
+                CreatedDate = DateTime.Now,
+                ModifiedDate = DateTime.Now
                 //_links,
             },
             new NewsItem
@@ -35,6 +47,12 @@ namespace TechnicalRadiation.Repositories.Data
 
                 ImgSource = "https://cdn.mbl.is/frimg/1/15/70/1157040.jpg",
                 ShortDescription = "Fólk að synda"
+                LongDescription = "Long Description comes here",
+                PublishDate = DateTime.Now,
+                ModifiedBy = _adminName,00
+                CreatedDate = DateTime.Now,
+                ModifiedDate = DateTime.Now
+ 
                 //_links,
             }
         };

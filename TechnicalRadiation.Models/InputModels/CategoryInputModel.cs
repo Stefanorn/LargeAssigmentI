@@ -1,4 +1,4 @@
-namespace TechnicalRadiation.Models.Entities
+namespace TechnicalRadiation.Models.InputModels
 {
     public class CategoryInputModel
     {

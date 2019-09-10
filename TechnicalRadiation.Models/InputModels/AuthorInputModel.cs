@@ -7,11 +7,8 @@ namespace TechnicalRadiation.Models.InputModels
        [Required]
        public string Name { get; set; } 
        [Required]
-       //must be a valid URL
-       [Required]
-       [URL]
+       [Url]
        public string ProfileImgSource { get; set; } 
-       [Required]
        // max Length 255
        [Required]
        [MaxLength(255)]

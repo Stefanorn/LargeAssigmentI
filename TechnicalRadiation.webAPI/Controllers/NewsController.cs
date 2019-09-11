@@ -9,7 +9,7 @@ using TechnicalRadiation.Models.InputModels;
 namespace TechnicalRadiation.webAPI.Controllers
 {
     [Route("api")]
-  //  [ApiController]
+ //   [ApiController]
     public class NewsController : ControllerBase
     {
         private NewsService _newsService;
@@ -30,6 +30,7 @@ namespace TechnicalRadiation.webAPI.Controllers
             return Ok(_newsService.GetNewsById(id));
         }
 
+//TODO Authorized Routs !! 
         [Route("{id:int}", Name = "GetNewssById")]
         [HttpDelete]
         public IActionResult DeleteNews(int id){

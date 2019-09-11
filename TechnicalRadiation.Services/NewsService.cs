@@ -27,7 +27,7 @@ namespace TechnicalRadiation.Services
            return _NewsRepo.CreateNewNews(model);
        }
 
-        public NewsItemDto GetNewsById(int id)
+        public NewsItemDetailDto GetNewsById(int id)
         {
             return _NewsRepo.GetNewsById(id);
         }

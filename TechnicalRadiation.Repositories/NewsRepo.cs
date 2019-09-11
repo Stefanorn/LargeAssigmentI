@@ -53,11 +53,11 @@ namespace TechnicalRadiation.Repositories
             DataProvider.newsItems.RemoveAll(r => r.Id == id);
         }
 
-        public NewsItemDto GetNewsById(int id)
+        public NewsItemDetailDto GetNewsById(int id)
         {
             var entity = DataProvider.newsItems.FirstOrDefault(r => r.Id == id);
             if (entity == null) { return null; /* throw some exception */ }
-            return new NewsItemDto(){};
+            return new NewsItemDetailDto(){};
         }
 
         public void UpdateNewsById( NewsItemInputModel input, int id){

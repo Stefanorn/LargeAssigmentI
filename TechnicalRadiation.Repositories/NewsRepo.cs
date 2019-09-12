@@ -13,15 +13,19 @@ namespace TechnicalRadiation.Repositories
         
         public IEnumerable<NewsItemDto> GetAllNews(){
 
-            return new List<NewsItemDto> {
-                new NewsItemDto(){
-                    Id = 4,
-                    Title = "Hello",
-                    ImgSource = "www.www.com",
-                    ShortDescription = "This is a NewsItem yo"
-                },
-            };
+            var allNews = DataProvider.newsItems;
+            var newsDto = new List<NewsItemDto>();
+
+            foreach(var news in allNews){
+                newsDto.Add( new NewsItemDto(){
+                    Id = news.Id,
+                    Title = news.Title,
+                    ImgSource = news.ImgSource,
+                    ShortDescription = news.ShortDescription
+                } );
+            }
             
+            return newsDto;
         }
 
         public NewsItemDto CreateNewNews( NewsItemInputModel model ) {

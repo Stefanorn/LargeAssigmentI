@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TechnicalRadiation.Services;
 using TechnicalRadiation.Models.InputModels;
+using TechnicalRadiation.Models;
+using TechnicalRadiation.Models.Dtos;
 
 namespace TechnicalRadiation.webAPI.Controllers
 {
@@ -19,9 +21,12 @@ namespace TechnicalRadiation.webAPI.Controllers
         }
         [Route("")]
         [HttpGet]
-        public IActionResult GetAllNews(){
+        public IActionResult GetAllNews([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 25 ){
+            
+            var envelope = new Envelope<NewsItemDto>( pageSize, pageNumber, _newsService.GetAllNews());
 
-            return Ok(_newsService.GetAllNews() );
+            return Ok(envelope.Items);
+
         }
         
         [Route("{id:int}", Name = "GetNewssById")]
@@ -29,6 +34,8 @@ namespace TechnicalRadiation.webAPI.Controllers
         public IActionResult GetNewsById(int id){
             return Ok(_newsService.GetNewsById(id));
         }
+
+
 
 //TODO Authorized Routs !! 
         [Route("{id:int}", Name = "GetNewssById")]

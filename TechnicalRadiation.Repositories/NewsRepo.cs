@@ -82,5 +82,21 @@ namespace TechnicalRadiation.Repositories
             entity.PublishDate = input.PublishDate;
             entity.ModifiedDate = DateTime.Now;
         }
+
+        public IEnumerable<CategoryDto> GetAllCategories(){
+
+            var allcategories = DataProvider.categories;
+            var CategoryDto = new List<CategoryDto>();
+
+            foreach(var categories in allcategories){
+                CategoryDto.Add( new CategoryDto(){
+                    Id = categories.Id,
+                    Name = categories.Name,
+                    Slug = categories.Slug
+                } );
+            }
+            
+            return CategoryDto;
+        }
     }
 }

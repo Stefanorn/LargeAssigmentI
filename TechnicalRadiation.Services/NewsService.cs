@@ -20,6 +20,9 @@ namespace TechnicalRadiation.Services
 
            return _NewsRepo.GetAllNews().ToList();
        }
+       public IEnumerable<CategoryDto> GetAllCategories(){
+           return _NewsRepo.GetAllCategories().ToList();
+       }
 
        public NewsItemDto CreateNewNews( NewsItemInputModel model ) {
            return _NewsRepo.CreateNewNews(model);

@@ -12,6 +12,15 @@ namespace TechnicalRadiation.Repositories.Data
         public static int NextÍd(){
             return ++_nextId;
         }
+        //categories
+        public static List<Category> categories = new List<Category>
+        {
+            new Category{
+                Id = 1,
+                Name = "Sund fréttir",
+                Slug = "sund"
+            }
+        };
         //newsitems
         public static List<NewsItem> newsItems = new List<NewsItem>
         {

@@ -28,6 +28,13 @@ namespace TechnicalRadiation.webAPI.Controllers
             return Ok(envelope.Items);
 
         }
+
+        [Route("{categories}")]
+        [HttpGet]
+        public IActionResult GetAllCategories([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 100 ){
+            var envelope = new Envelope<CategoryDto>(pageNumber = 1, pageSize, _newsService.GetAllCategories());
+            return Ok(envelope.Items);
+        }
         
         [Route("{id:int}", Name = "GetNewssById")]
         [HttpGet]

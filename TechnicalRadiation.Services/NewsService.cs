@@ -3,8 +3,10 @@ using System.Linq;
 using TechnicalRadiation.Repositories;
 using TechnicalRadiation.Models.Dtos;
 using TechnicalRadiation.Models.InputModels;
+using TechnicalRadiation.Models.HyperMedia;
 using TechnicalRadiation.Models.Entities;
 using System;
+using TechnicalRadiation.Models.Extensions;
 
 namespace TechnicalRadiation.Services
 {
@@ -18,7 +20,12 @@ namespace TechnicalRadiation.Services
        }
        public IEnumerable<NewsItemDto> GetAllNews(){
 
-           return _NewsRepo.GetAllNews().ToList();
+           //return _NewsRepo.GetAllNews().ToList();
+            var news = _NewsRepo.GetAllNews().ToList();
+            news.ForEach(r => {
+                r.Links.AddReference("self", $"/api/{r.Id}");
+            });
+            return news;
        }
        public IEnumerable<CategoryDto> GetAllCategories(){
            return _NewsRepo.GetAllCategories().ToList();

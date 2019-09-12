@@ -36,6 +36,12 @@ namespace TechnicalRadiation.webAPI.Controllers
             return Ok(envelope.Items);
         }
         
+        [Route("categories/{id:int}", Name = "GetCategoryById")]
+        [HttpGet]
+        public IActionResult GetCategoryById(int id){
+            return Ok(_newsService.GetCategoryById(id));
+        }
+        
         [Route("{id:int}", Name = "GetNewssById")]
         [HttpGet]
         public IActionResult GetNewsById(int id){

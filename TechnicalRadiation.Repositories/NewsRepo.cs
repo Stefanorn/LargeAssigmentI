@@ -49,6 +49,7 @@ namespace TechnicalRadiation.Repositories
                Title = model.Title,
                ImgSource = model.ImgSource,
                ShortDescription = model.ShortDescription,
+               //_links = model.Links
            };
        }
 
@@ -61,7 +62,14 @@ namespace TechnicalRadiation.Repositories
         {
             var entity = DataProvider.newsItems.FirstOrDefault(r => r.Id == id);
             if (entity == null) { return null; /* throw some exception */ }
-            return new NewsItemDetailDto(){};
+            return new NewsItemDetailDto(){
+                Id = entity.Id,
+                Title = entity.Title,
+                ImgSource = entity.ImgSource,
+                ShortDescription = entity.ShortDescription,
+                LongDescription = entity.LongDescription,
+                PublishDate = entity.PublishDate
+            };
         }
 
         public void UpdateNewsById( NewsItemInputModel input, int id){

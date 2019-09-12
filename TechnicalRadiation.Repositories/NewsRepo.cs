@@ -53,6 +53,11 @@ namespace TechnicalRadiation.Repositories
            };
        }
 
+        public static IEnumerable<object> GetAuthorByNewsId(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public void DeleteNewsById(int id)
         {
             DataProvider.newsItems.RemoveAll(r => r.Id == id);
@@ -71,6 +76,13 @@ namespace TechnicalRadiation.Repositories
                 PublishDate = entity.PublishDate
             };
         }
+
+        /*public NewsItemAuthor GetAuthorByNewsId(int NewsItem, int AuthorId)
+        {
+            var Author = DataProvider.NewsItemAuthors.FirstOrDefault(o => o.AuthorId == AuthorId && o.NewsItemId == NewsItem);
+            if(Author == null) { throw new Exception("Author not found");}
+            return Author;
+        }*/
 
         public void UpdateNewsById( NewsItemInputModel input, int id){
             var entity = DataProvider.newsItems.FirstOrDefault(r => r.Id == id);

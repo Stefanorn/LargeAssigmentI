@@ -27,6 +27,14 @@ namespace TechnicalRadiation.Services
                 
                 r.Links.AddReference("self",
                                      new { href = $"/api/{r.Id}" });
+                r.Links.AddReference("edit",
+                                     new { href = $"/api/{r.Id}" });
+                r.Links.AddReference("delete",
+                                     new { href = $"/api/{r.Id}" });
+                r.Links.AddReference("authors",
+                                     new { href = $"/api/authors/{r.Id}" }); //vantar square brackets
+                r.Links.AddReference("categories",
+                                     new { href = $"/api/categories/{r.Id}" }); //vantar square brackets
             });
             return news;
        }

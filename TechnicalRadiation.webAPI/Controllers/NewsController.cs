@@ -22,8 +22,8 @@ namespace TechnicalRadiation.webAPI.Controllers
         [Route("")]
         [HttpGet]
         public IActionResult GetAllNews([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 25 ){
-            
-            var envelope = new Envelope<NewsItemDto>( pageSize, pageNumber, _newsService.GetAllNews());
+
+            var envelope = new Envelope<NewsItemDto>( pageNumber,pageSize, _newsService.GetAllNews());
 
             return Ok(envelope.Items);
 

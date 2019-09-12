@@ -23,7 +23,10 @@ namespace TechnicalRadiation.Services
            //return _NewsRepo.GetAllNews().ToList();
             var news = _NewsRepo.GetAllNews().ToList();
             news.ForEach(r => {
-                r.Links.AddReference("self", $"/api/{r.Id}");
+                //r.Links.AddReference("self", $"/api/{r.Id}");
+                
+                r.Links.AddReference("self",
+                                     new { href = $"/api/{r.Id}" });
             });
             return news;
        }

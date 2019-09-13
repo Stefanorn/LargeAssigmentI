@@ -70,6 +70,11 @@ namespace TechnicalRadiation.Repositories
             DataProvider.NewsItemCategoriess.Add(new NewsItemCategories{ CategoryId = catId, NewsItem = newsId});
         }
 
+        public void LinkAuthorToNewsItem(int authId, int newsId)
+        {
+            DataProvider.NewsItemAuthors.Add(new NewsItemAuthor{ AuthorId = authId, NewsItemId = newsId});
+        }
+
         private string GenerateSlug(string name){
             name.ToLower();
              string pattern = " ";

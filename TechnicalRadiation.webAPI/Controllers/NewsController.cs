@@ -80,7 +80,7 @@ namespace TechnicalRadiation.webAPI.Controllers
 
         [Route("")]
         [HttpPost]
-        public IActionResult CreateNews([FromHeader]string AuthorizedCode ,[FromBody] NewsItemInputModel body){
+        public IActionResult CreateNewNews([FromHeader]string AuthorizedCode ,[FromBody] NewsItemInputModel body){
             
             if (AuthorizedCode == null || AuthorizedCode != _password) {
                 return StatusCode(403);
@@ -90,7 +90,7 @@ namespace TechnicalRadiation.webAPI.Controllers
                 return BadRequest("input model not valid");
             }
             var news = _newsService.CreateNewNews(body);
-            return CreatedAtRoute( "GetNewssById", new { id = news.Id }, null );
+            return CreatedAtRoute( "GetNewsById", new { id = news.Id }, null );
         }
     }
 }

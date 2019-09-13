@@ -9,7 +9,7 @@ namespace TechnicalRadiation.Repositories.Data
     {
         private static readonly string _adminName = "DBAdmin";
         private static int _nextId = 0;
-        public static int NextÍd(){
+        private static int NextÍd(){
             return ++_nextId;
         }
         //categories
@@ -26,7 +26,7 @@ namespace TechnicalRadiation.Repositories.Data
         {
             new NewsItem
             {
-                Id = NextÍd(),
+                Id = 1,
                 Title = "Fyrsti : Þurfa að synda í gegn­um stór­an olíuflekk (þessi er með tíman 34min",
 
                 ImgSource = "https://cdn.mbl.is/frimg/1/15/70/1157040.jpg",
@@ -40,7 +40,7 @@ namespace TechnicalRadiation.Repositories.Data
                 //_links,
             },            new NewsItem
             {
-                Id = NextÍd(),
+                Id = 2,
                 Title = "Þurfa að synda í gegn­um stór­an olíuflekk (þessi er með tíman 35min)",
 
                 ImgSource = "https://cdn.mbl.is/frimg/1/15/70/1157040.jpg",
@@ -54,7 +54,7 @@ namespace TechnicalRadiation.Repositories.Data
                 //_links,
             },            new NewsItem
             {
-                Id = NextÍd(),
+                Id = 3,
                 Title = "Þurfa að synda í gegn­um stór­an olíuflekk",
 
                 ImgSource = "https://cdn.mbl.is/frimg/1/15/70/1157040.jpg",

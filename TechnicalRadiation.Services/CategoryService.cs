@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using TechnicalRadiation.Models.Dtos;
 using TechnicalRadiation.Models.InputModels;
 using TechnicalRadiation.Repositories;
@@ -23,4 +23,4 @@ namespace TechnicalRadiation.Services
             _categoryRepo.UpdateCategory(body, id);
         }
     }
-}
+}*/

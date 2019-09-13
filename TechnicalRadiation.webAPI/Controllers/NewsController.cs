@@ -65,7 +65,7 @@ namespace TechnicalRadiation.webAPI.Controllers
             return NoContent();
         }
 
-        [Route("{id:int}", Name = "GetNewssById")]
+        [Route("{id:int}", Name = "GetNewsById")]
         [HttpPut]
         public IActionResult UpdateNewsById([FromHeader]string AuthorizedCode, [FromBody] NewsItemInputModel input,  int id){
             if (AuthorizedCode == null || AuthorizedCode != _password){
@@ -90,7 +90,7 @@ namespace TechnicalRadiation.webAPI.Controllers
                 return BadRequest("input model not valid");
             }
             var news = _newsService.CreateNewNews(body);
-            return CreatedAtRoute( "GetNewssById", new { id = news.Id}, null );
+            return CreatedAtRoute( "GetNewssById", new { id = news.Id }, null );
         }
     }
 }

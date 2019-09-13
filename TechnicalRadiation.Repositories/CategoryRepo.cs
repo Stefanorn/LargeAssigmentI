@@ -17,9 +17,24 @@ namespace TechnicalRadiation.Repositories
             DataProvider.categories.RemoveAll(r => r.Id == id);
         }
 
-        public CategoryDto CreateCategory(CategoryInputModel body)
+        public CategoryDto CreateCategory(CategoryInputModel model)
         {
-            throw new NotImplementedException();
+            var nextId = DataProvider.NewsItemCategoriess.Count;
+
+            Category newItem = new Category{
+                Id = nextId,
+                Name = model.Name,
+                Slug = model.Name.ToLower(),
+                ModifiedBy = "Stefan",
+                CreatedDate = DateTime.Now,
+                ModifiedDate = DateTime.Now
+            };
+            DataProvider.categories.Add(newItem);
+            return new CategoryDto{
+                Id = nextId,
+                Name = model.Name,
+                Slug = model.Name.ToLower()
+            };
         }
 
         public void UpdateCategory(CategoryInputModel body, int id)

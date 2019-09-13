@@ -7,7 +7,7 @@ namespace TechnicalRadiation.Models.Entities
         public int Id {get; set;}
         public string Name {get; set;}
         public string Slug {get; set;}
-        public DateTime ModifiedBy {get; set;}
+        public string ModifiedBy {get; set;}
         public DateTime CreatedDate {get; set;}
         public DateTime ModifiedDate {get; set;}
     }

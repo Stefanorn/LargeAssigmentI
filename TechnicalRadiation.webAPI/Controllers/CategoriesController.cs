@@ -1,4 +1,4 @@
-/*using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,7 +23,7 @@ namespace TechnicalRadiation.webAPI.Controllers
 
         [Route("")]
         [HttpPost]
-        public IActionResult CreateNewCategory([FromHeader]string AuthorizedCode, [FromBody] CategoryInputModel body){
+        public IActionResult CreateCategory([FromHeader]string AuthorizedCode, [FromBody] CategoryInputModel body){
             if (AuthorizedCode == null || AuthorizedCode != _password){
                 return StatusCode(403);
             }
@@ -35,7 +35,7 @@ namespace TechnicalRadiation.webAPI.Controllers
             return CreatedAtRoute( "GetNewssById", new { id = categories.Id}, null );
 
         }
-        [Route("{id:int}", Name = "GetCatById")] 
+        [Route("{id:int}", Name = "GetCategoryById")] 
         [HttpPut]
         public IActionResult UpdateCategory([FromHeader]string AuthorizedCode, [FromBody] CategoryInputModel body, int id){
             if (AuthorizedCode == null || AuthorizedCode != _password){
@@ -49,7 +49,7 @@ namespace TechnicalRadiation.webAPI.Controllers
             return NoContent();  
         }
 
-        [Route("{id:int}", Name = "GetNewssById")]
+        [Route("{id:int}", Name = "GetCategoryById")]
         [HttpDelete]
         public IActionResult DeleteCatagory([FromHeader]string AuthorizedCode, int id){
 
@@ -64,4 +64,4 @@ namespace TechnicalRadiation.webAPI.Controllers
         }
 
     }
-}*/
+}

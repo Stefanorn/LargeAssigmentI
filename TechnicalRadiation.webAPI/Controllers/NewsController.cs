@@ -108,7 +108,6 @@ namespace TechnicalRadiation.webAPI.Controllers
             return CreatedAtRoute( "GetNewsById", new { id = news.Id }, null );
         }
 
-<<<<<<< HEAD
         [Route("authors")]
         [HttpPost]
         public IActionResult CreateAuthor([FromHeader]string AuthorizedCode ,[FromBody] AuthorInputModel body){
@@ -126,9 +125,6 @@ namespace TechnicalRadiation.webAPI.Controllers
 
 
         [Route("{categories}")]
-=======
-        [Route("categories")]
->>>>>>> 0742ccd4c99dcf4d96489dcc68e4dc92b18e15f8
         [HttpGet]
         public IActionResult GetAllCategories([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 100 ){
             var envelope = new Envelope<CategoryDto>(pageNumber = 1, pageSize, _newsService.GetAllCategories());
@@ -141,12 +137,8 @@ namespace TechnicalRadiation.webAPI.Controllers
             return Ok(_newsService.GetCategoryById(id));
         }
         
-<<<<<<< HEAD
         
         [Route("{categories}")]
-=======
-        [Route("categories/")]
->>>>>>> 0742ccd4c99dcf4d96489dcc68e4dc92b18e15f8
         [HttpPost]
         public IActionResult CreateCategory([FromHeader]string AuthorizedCode, [FromBody] CategoryInputModel body){
             if (AuthorizedCode == null || AuthorizedCode != _password){

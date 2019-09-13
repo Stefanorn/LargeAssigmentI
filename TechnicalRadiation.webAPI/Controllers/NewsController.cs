@@ -189,7 +189,7 @@ namespace TechnicalRadiation.webAPI.Controllers
             _newsService.LinkNewsToCatagory(catId,newsId);
             return NoContent();
         }
-        [Route("author/{authId:int}/news/{newsId}", Name = "LinkNewsToCatagory")]
+        [Route("author/{authId:int}/news/{newsId}", Name = "LinkAuthorToCatagory")]
         [HttpGet]
         public IActionResult LinkAuthorToNewsItem([FromHeader]string AuthorizedCode, int authId, int newsId){
             if (AuthorizedCode == null || AuthorizedCode != _password){

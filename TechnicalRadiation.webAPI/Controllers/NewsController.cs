@@ -28,7 +28,7 @@ namespace TechnicalRadiation.webAPI.Controllers
             return Ok(envelope.Items);
 
         }
-
+/*
         [Route("{categories}")]
         [HttpGet]
         public IActionResult GetAllCategories([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 100 ){
@@ -41,7 +41,7 @@ namespace TechnicalRadiation.webAPI.Controllers
         public IActionResult GetCategoryById(int id){
             return Ok(_newsService.GetCategoryById(id));
         }
-        
+        */
         [Route("{id:int}", Name = "GetNewssById")]
         [HttpGet]
         public IActionResult GetNewsById(int id){
@@ -91,6 +91,61 @@ namespace TechnicalRadiation.webAPI.Controllers
             }
             var news = _newsService.CreateNewNews(body);
             return CreatedAtRoute( "GetNewsById", new { id = news.Id }, null );
+        }
+
+        [Route("{categories}")]
+        [HttpGet]
+        public IActionResult GetAllCategories([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 100 ){
+            var envelope = new Envelope<CategoryDto>(pageNumber = 1, pageSize, _newsService.GetAllCategories());
+            return Ok(envelope.Items);
+        }
+        [Route("categories/{id:int}", Name = "GetCategoryById")]
+        [HttpGet]
+        public IActionResult GetCategoryById(int id){
+            return Ok(_newsService.GetCategoryById(id));
+        }
+        
+        
+        [Route("{categories")]
+        [HttpPost]
+        public IActionResult CreateCategory([FromHeader]string AuthorizedCode, [FromBody] CategoryInputModel body){
+            if (AuthorizedCode == null || AuthorizedCode != _password){
+                return StatusCode(403);
+            }
+            if(!ModelState.IsValid){
+                return BadRequest("input model not valid");
+            }
+
+            var categories = _newsService.CreateCategory(body);
+            return CreatedAtRoute( "GetNewssById", new { id = categories.Id}, null );
+
+        }
+        [Route("categories/{id:int}", Name = "GetCategoryById")] 
+        [HttpPut]
+        public IActionResult UpdateCategory([FromHeader]string AuthorizedCode, [FromBody] CategoryInputModel body, int id){
+            if (AuthorizedCode == null || AuthorizedCode != _password){
+                return StatusCode(403);
+            }
+            if(!ModelState.IsValid){
+                return BadRequest("input model not valid");
+            }
+
+            _newsService.UpdateCategory(body, id);
+            return NoContent();  
+        }
+
+        [Route("categories/{id:int}", Name = "GetCategoryById")]
+        [HttpDelete]
+        public IActionResult DeleteCatagory([FromHeader]string AuthorizedCode, int id){
+
+            if (AuthorizedCode == null || AuthorizedCode != _password){
+                return StatusCode(403);
+            }
+            if(!ModelState.IsValid){
+                return BadRequest("input model not valid");
+            }
+            _newsService.DeleteCatagoryById(id);
+            return NoContent();
         }
     }
 }

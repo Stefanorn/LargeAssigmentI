@@ -30,6 +30,39 @@ namespace TechnicalRadiation.Repositories
             
             return newsDto;
         }
+        public void DeleteCategoryById(int id)
+        {
+            DataProvider.categories.RemoveAll(r => r.Id == id);
+        }
+        public CategoryDto CreateCategory(CategoryInputModel model)
+        {
+            var nextId = DataProvider.NewsItemCategoriess.Count;
+
+            Category newItem = new Category{
+                Id = nextId,
+                Name = model.Name,
+                Slug = model.Name.ToLower(),
+                ModifiedBy = "Stefan",
+                CreatedDate = DateTime.Now,
+                ModifiedDate = DateTime.Now
+            };
+            DataProvider.categories.Add(newItem);
+            return new CategoryDto{
+                Id = nextId,
+                Name = model.Name,
+                Slug = model.Name.ToLower()
+            };
+        }
+         public void UpdateCategory(CategoryInputModel body, int id)
+        {
+           var entiy = DataProvider.categories.FirstOrDefault(r => r.Id == id); 
+           if (entiy == null){
+               return;//throw new Exception("");
+           }
+           entiy.ModifiedDate = DateTime.Now;
+           entiy.Name = body.Name;
+           entiy.Slug = body.Name.ToLower();//GenerateSlug(body.Name);
+        }
 
         public NewsItemDto CreateNewNews( NewsItemInputModel model ) {
         

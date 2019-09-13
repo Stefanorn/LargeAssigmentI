@@ -13,10 +13,13 @@ namespace TechnicalRadiation.Repositories
         
         public IEnumerable<NewsItemDto> GetAllNews(){
 
-            var allNews = DataProvider.newsItems;
+            //var allNews = DataProvider.newsItems;
             var newsDto = new List<NewsItemDto>();
 
-            foreach(var news in allNews){
+            //List<NewsItem> allNews = DataProvider.newsItems.OrderByDescending(DataProvider.newsItems.PublishDate);//
+            List<NewsItem> allNews = DataProvider.newsItems;
+            var allNewsDescendingDate = allNews.OrderByDescending(s => s.PublishDate);
+            foreach(var news in allNewsDescendingDate){
                 newsDto.Add( new NewsItemDto(){
                     Id = news.Id,
                     Title = news.Title,

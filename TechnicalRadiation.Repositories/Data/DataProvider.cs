@@ -27,12 +27,12 @@ namespace TechnicalRadiation.Repositories.Data
             new NewsItem
             {
                 Id = NextÍd(),
-                Title = "Þurfa að synda í gegn­um stór­an olíuflekk (þessi er með tíman 34min",
+                Title = "Fyrsti : Þurfa að synda í gegn­um stór­an olíuflekk (þessi er með tíman 34min",
 
                 ImgSource = "https://cdn.mbl.is/frimg/1/15/70/1157040.jpg",
                 ShortDescription = "Fólk að synda",
                 LongDescription = "Long Description comes here",
-                PublishDate = new DateTime (2019, 01, 31, 7, 34, 20),
+                PublishDate = new DateTime (2019, 01, 31, 7, 33, 20),
                 ModifiedBy = _adminName,
                 CreatedDate = DateTime.Now,
                 ModifiedDate = DateTime.Now
@@ -60,13 +60,13 @@ namespace TechnicalRadiation.Repositories.Data
                 ImgSource = "https://cdn.mbl.is/frimg/1/15/70/1157040.jpg",
                 ShortDescription = "Fólk að synda",
                 LongDescription = "Long Description comes here",
-                PublishDate = DateTime.Now,
+                PublishDate = new DateTime (2019, 01, 31, 7, 34, 20),
                 ModifiedBy = _adminName,
                 CreatedDate = DateTime.Now,
                 ModifiedDate = DateTime.Now
                 
                 //_links,
-            },            new NewsItem
+            }/*,            new NewsItem
             {
                 Id = NextÍd(),
                 Title = "Þurfa að synda í gegn­um stór­an olíuflekk",
@@ -753,7 +753,7 @@ namespace TechnicalRadiation.Repositories.Data
                 ModifiedDate = DateTime.Now
                 
                 //_links,
-            }
+            } */
 
 
         };

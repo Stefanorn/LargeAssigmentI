@@ -15,7 +15,7 @@ namespace TechnicalRadiation.webAPI.Controllers
     public class NewsController : ControllerBase
     {
         private NewsService _newsService;
-        private string password = "SecretPassword";
+        private string _password = "SecretPassword";
         public NewsController(){
             // TODO Ath mapper
             _newsService = new NewsService();
@@ -55,9 +55,11 @@ namespace TechnicalRadiation.webAPI.Controllers
         [Route("{id:int}", Name = "GetNewssById")]
         [HttpDelete]
         public IActionResult DeleteNews([FromHeader]string AuthorizedCode, int id){
-            if (AuthorizedCode != password){
-                return Forbid();
+
+            if (AuthorizedCode == null || AuthorizedCode != _password){
+                return StatusCode(403);
             }
+
             if(!ModelState.IsValid){
                 return BadRequest("input model not valid");
             }
@@ -68,8 +70,8 @@ namespace TechnicalRadiation.webAPI.Controllers
         [Route("{id:int}", Name = "GetNewssById")]
         [HttpPut]
         public IActionResult UpdateNewsById([FromHeader]string AuthorizedCode, [FromBody] NewsItemInputModel input,  int id){
-            if (AuthorizedCode != password){
-                return Forbid();
+            if (AuthorizedCode == null || AuthorizedCode != _password){
+                return StatusCode(403);
             }
             if(!ModelState.IsValid){
                 return BadRequest("input model not valid");
@@ -81,11 +83,12 @@ namespace TechnicalRadiation.webAPI.Controllers
         [Route("")]
         [HttpPost]
         public IActionResult CreateNews([FromHeader]string AuthorizedCode ,[FromBody] NewsItemInputModel body){
-            if (AuthorizedCode != password){
-                return Forbid();
+            
+            if (AuthorizedCode == null || AuthorizedCode != _password) {
+                return StatusCode(403);
             }
 
-            if(!ModelState.IsValid){
+            if (!ModelState.IsValid){
                 return BadRequest("input model not valid");
             }
             var news = _newsService.CreateNewNews(body);

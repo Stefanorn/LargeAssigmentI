@@ -30,6 +30,18 @@ namespace TechnicalRadiation.Repositories
             
             return newsDto;
         }
+        public IEnumerable<AuthorDto> GetAllAuthors(){
+            var authorDto = new List<AuthorDto>();
+
+            List<Author> allAuthors = DataProvider.Authors;
+            foreach(var author_ in allAuthors){
+                authorDto.Add(new AuthorDto(){
+                    id = author_.Id,
+                    name = author_.name
+                });
+            }
+            return authorDto;
+        }
         public void DeleteCategoryById(int id)
         {
             DataProvider.categories.RemoveAll(r => r.Id == id);
@@ -55,6 +67,7 @@ namespace TechnicalRadiation.Repositories
         }
          public void UpdateCategory(CategoryInputModel body, int id)
         {
+  
            var entiy = DataProvider.categories.FirstOrDefault(r => r.Id == id); 
            if (entiy == null){
                return;//throw new Exception("");
@@ -89,6 +102,25 @@ namespace TechnicalRadiation.Repositories
            };
        }
 
+       public AuthorDetailDto CreateAuthor(AuthorInputModel model)
+       {
+           var nextId = DataProvider.NewsItemAuthors.Count;
+
+           Author newAuthor = new Author{
+               Id = nextId,
+               name = model.Name,
+               ProfileImgSource = model.ProfileImgSource,
+               Bio = model.Bio
+           };
+           DataProvider.Authors.Add(newAuthor);
+           return new AuthorDetailDto{
+               	Id = nextId,
+                Name = model.Name,
+                ProfileImgSource = model.ProfileImgSource,
+                Bio = model.Bio
+           };
+       }
+
 
 
         public void DeleteNewsById(int id)
@@ -107,6 +139,17 @@ namespace TechnicalRadiation.Repositories
                 ShortDescription = entity.ShortDescription,
                 LongDescription = entity.LongDescription,
                 PublishDate = entity.PublishDate
+            };
+        }
+        public AuthorDetailDto GetAuthorById(int id)
+        {
+            var entity = DataProvider.Authors.FirstOrDefault(r => r.Id == id);
+            if (entity == null) { return null; /* throw some exception */ }
+            return new AuthorDetailDto(){
+                Id = entity.Id,
+                Name = entity.name,
+                ProfileImgSource = entity.ProfileImgSource,
+                Bio = entity.Bio
             };
         }
 

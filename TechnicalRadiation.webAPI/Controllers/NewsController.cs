@@ -28,6 +28,15 @@ namespace TechnicalRadiation.webAPI.Controllers
             return Ok(envelope.Items);
 
         }
+        [Route("{authors}")]
+        [HttpGet]
+        public IActionResult GetAllAuthors([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 25 ){
+
+            var envelope = new Envelope<AuthorDto>( pageNumber,pageSize, _newsService.GetAllAuthors());
+
+            return Ok(envelope.Items);
+
+        }
 /*
         [Route("{categories}")]
         [HttpGet]
@@ -46,6 +55,12 @@ namespace TechnicalRadiation.webAPI.Controllers
         [HttpGet]
         public IActionResult GetNewsById(int id){
             return Ok(_newsService.GetNewsById(id));
+        }
+
+        [Route("authors/{id:int}", Name = "GetAuthorById")]
+        [HttpGet]
+        public IActionResult GetAuthorById(int id){
+            return Ok(_newsService.GetAuthorById(id));
         }
 
 
@@ -93,6 +108,22 @@ namespace TechnicalRadiation.webAPI.Controllers
             return CreatedAtRoute( "GetNewsById", new { id = news.Id }, null );
         }
 
+        [Route("authors")]
+        [HttpPost]
+        public IActionResult CreateAuthor([FromHeader]string AuthorizedCode ,[FromBody] AuthorInputModel body){
+            
+            if (AuthorizedCode == null || AuthorizedCode != _password) {
+                return StatusCode(403);
+            }
+
+            if (!ModelState.IsValid){
+                return BadRequest("input model not valid");
+            }
+            var news = _newsService.CreateAuthor(body);
+            return CreatedAtRoute( "GetAuthorById", new { id = news.Id }, null );
+        }
+
+
         [Route("{categories}")]
         [HttpGet]
         public IActionResult GetAllCategories([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 100 ){
@@ -106,7 +137,7 @@ namespace TechnicalRadiation.webAPI.Controllers
         }
         
         
-        [Route("{categories")]
+        [Route("{categories}")]
         [HttpPost]
         public IActionResult CreateCategory([FromHeader]string AuthorizedCode, [FromBody] CategoryInputModel body){
             if (AuthorizedCode == null || AuthorizedCode != _password){
@@ -117,7 +148,7 @@ namespace TechnicalRadiation.webAPI.Controllers
             }
 
             var categories = _newsService.CreateCategory(body);
-            return CreatedAtRoute( "GetNewssById", new { id = categories.Id}, null );
+            return CreatedAtRoute( "GetCategoryById", new { id = categories.Id}, null );
 
         }
         [Route("categories/{id:int}", Name = "GetCategoryById")] 

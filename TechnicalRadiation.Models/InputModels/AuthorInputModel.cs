@@ -4,7 +4,9 @@ namespace TechnicalRadiation.Models.InputModels
 {
     public class AuthorInputModel
     {
-       [Required]
+        //public string name;
+
+        [Required]
        public string Name { get; set; } 
        [Required]
        [Url]

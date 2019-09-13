@@ -21,6 +21,18 @@ namespace TechnicalRadiation.Repositories.Data
                 Slug = "sund"
             }
         };
+        public static List<Author> Authors = new List<Author>
+        {
+            new Author{
+                Id = 1,
+                name = "J.K. Rowling",
+                ProfileImgSource = "https://huberfinancial.com/wp-content/uploads/JKRowling_Photo-895x1030.jpg",
+                Bio = "British Novelist",
+                ModifiedBy = _adminName,
+                CreatedDate = DateTime.Now,
+                ModifiedDate = DateTime.Now
+            }
+        };
         //newsitems
         public static List<NewsItem> newsItems = new List<NewsItem>
         {

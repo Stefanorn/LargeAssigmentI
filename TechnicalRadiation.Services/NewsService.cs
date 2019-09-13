@@ -39,7 +39,12 @@ namespace TechnicalRadiation.Services
        }
        public IEnumerable<CategoryDto> GetAllCategories(){
            return _NewsRepo.GetAllCategories().ToList();
-       }/*
+       }
+       public IEnumerable<AuthorDto> GetAllAuthors(){
+           return _NewsRepo.GetAllAuthors().ToList();
+       }
+       
+       /*
        public CategoryDetailDto GetCategoryById(int id)
        {
            return _NewsRepo.GetCategoryById(id);
@@ -52,6 +57,11 @@ namespace TechnicalRadiation.Services
         public NewsItemDetailDto GetNewsById(int id)
         {
             return _NewsRepo.GetNewsById(id);
+        }
+
+        public AuthorDetailDto GetAuthorById(int id)
+        {
+            return _NewsRepo.GetAuthorById(id);
         }
 
         public void UpdateNewsById(NewsItemInputModel input ,int id){
@@ -74,6 +84,11 @@ namespace TechnicalRadiation.Services
         public CategoryDto CreateCategory(CategoryInputModel model)
         {
             return _NewsRepo.CreateCategory(model);
+        }
+
+        public AuthorDetailDto CreateAuthor(AuthorInputModel model)
+        {
+            return _NewsRepo.CreateAuthor(model);
         }
 
         public void UpdateCategory(CategoryInputModel body, int id)

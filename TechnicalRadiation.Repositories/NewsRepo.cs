@@ -37,7 +37,7 @@ namespace TechnicalRadiation.Repositories
         }
         public CategoryDto CreateCategory(CategoryInputModel model)
         {
-            var nextId = DataProvider.categories.Count;
+            var nextId = DataProvider.NewsItemCategoriess.Count;
 
             Category newItem = new Category{
                 Id = nextId,
@@ -63,6 +63,11 @@ namespace TechnicalRadiation.Repositories
            entiy.ModifiedDate = DateTime.Now;
            entiy.Name = body.Name;
            entiy.Slug = GenerateSlug(body.Name);
+        }
+
+        public void LinkNewsToCatagory(int catId, int newsId)
+        {
+            DataProvider.NewsItemCategoriess.Add(new NewsItemCategories{ CategoryId = catId, NewsItem = newsId});
         }
 
         private string GenerateSlug(string name){

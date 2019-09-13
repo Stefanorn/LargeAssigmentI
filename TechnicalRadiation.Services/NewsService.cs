@@ -62,6 +62,11 @@ namespace TechnicalRadiation.Services
         {
             _NewsRepo.DeleteNewsById(id);
         }
+
+        public void LinkNewsToCatagory(int catId, int newsId)
+        {
+            _NewsRepo.LinkNewsToCatagory(catId,newsId);
+        }
           public CategoryDetailDto GetCategoryById(int id)
        {
            return _NewsRepo.GetCategoryById(id);

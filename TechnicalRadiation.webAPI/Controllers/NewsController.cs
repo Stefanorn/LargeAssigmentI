@@ -134,7 +134,7 @@ namespace TechnicalRadiation.webAPI.Controllers
             return NoContent();  
         }
 
-        [Route("categories/{id:int}", Name = "GetCategoryById")]
+        [Route("categories/{id:int}", Name = "DeleteCatagory")]
         [HttpDelete]
         public IActionResult DeleteCatagory([FromHeader]string AuthorizedCode, int id){
 
@@ -145,6 +145,16 @@ namespace TechnicalRadiation.webAPI.Controllers
                 return BadRequest("input model not valid");
             }
             _newsService.DeleteCatagoryById(id);
+            return NoContent();
+        }
+
+        [Route("categories/{catId:int}/news/{newsId}", Name = "LinkNewsToCatagory")]
+        [HttpGet]
+        public IActionResult LinkNewsToCatagory([FromHeader]string AuthorizedCode, int catId, int newsId){
+            if (AuthorizedCode == null || AuthorizedCode != _password){
+                return StatusCode(403);
+            }
+            _newsService.LinkNewsToCatagory(catId,newsId);
             return NoContent();
         }
     }

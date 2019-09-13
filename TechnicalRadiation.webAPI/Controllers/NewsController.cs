@@ -108,6 +108,7 @@ namespace TechnicalRadiation.webAPI.Controllers
             return CreatedAtRoute( "GetNewsById", new { id = news.Id }, null );
         }
 
+<<<<<<< HEAD
         [Route("authors")]
         [HttpPost]
         public IActionResult CreateAuthor([FromHeader]string AuthorizedCode ,[FromBody] AuthorInputModel body){
@@ -125,19 +126,27 @@ namespace TechnicalRadiation.webAPI.Controllers
 
 
         [Route("{categories}")]
+=======
+        [Route("categories")]
+>>>>>>> 0742ccd4c99dcf4d96489dcc68e4dc92b18e15f8
         [HttpGet]
         public IActionResult GetAllCategories([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 100 ){
             var envelope = new Envelope<CategoryDto>(pageNumber = 1, pageSize, _newsService.GetAllCategories());
             return Ok(envelope.Items);
         }
+
         [Route("categories/{id:int}", Name = "GetCategoryById")]
         [HttpGet]
         public IActionResult GetCategoryById(int id){
             return Ok(_newsService.GetCategoryById(id));
         }
         
+<<<<<<< HEAD
         
         [Route("{categories}")]
+=======
+        [Route("categories/")]
+>>>>>>> 0742ccd4c99dcf4d96489dcc68e4dc92b18e15f8
         [HttpPost]
         public IActionResult CreateCategory([FromHeader]string AuthorizedCode, [FromBody] CategoryInputModel body){
             if (AuthorizedCode == null || AuthorizedCode != _password){
@@ -165,7 +174,7 @@ namespace TechnicalRadiation.webAPI.Controllers
             return NoContent();  
         }
 
-        [Route("categories/{id:int}", Name = "GetCategoryById")]
+        [Route("categories/{id:int}", Name = "DeleteCatagory")]
         [HttpDelete]
         public IActionResult DeleteCatagory([FromHeader]string AuthorizedCode, int id){
 
@@ -176,6 +185,25 @@ namespace TechnicalRadiation.webAPI.Controllers
                 return BadRequest("input model not valid");
             }
             _newsService.DeleteCatagoryById(id);
+            return NoContent();
+        }
+
+        [Route("categories/{catId:int}/news/{newsId}", Name = "LinkNewsToCatagory")]
+        [HttpGet]
+        public IActionResult LinkNewsToCatagory([FromHeader]string AuthorizedCode, int catId, int newsId){
+            if (AuthorizedCode == null || AuthorizedCode != _password){
+                return StatusCode(403);
+            }
+            _newsService.LinkNewsToCatagory(catId,newsId);
+            return NoContent();
+        }
+        [Route("author/{authId:int}/news/{newsId}", Name = "LinkNewsToCatagory")]
+        [HttpGet]
+        public IActionResult LinkAuthorToNewsItem([FromHeader]string AuthorizedCode, int authId, int newsId){
+            if (AuthorizedCode == null || AuthorizedCode != _password){
+                return StatusCode(403);
+            }
+            _newsService.LinkAuthorToNewsItem(authId,newsId);
             return NoContent();
         }
     }

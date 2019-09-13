@@ -15,10 +15,20 @@ namespace TechnicalRadiation.Repositories.Data
         //categories
         public static List<Category> categories = new List<Category>
         {
-            new Category{
+            new Category {
+                Id = 0,
+                Name = "Sund frettir",
+                Slug = "sund-frettir"
+            },
+            new Category {
+                Id = 2,
+                Name = "flug frettir",
+                Slug = "flug-frettir"
+            },
+            new Category {
                 Id = 1,
-                Name = "Sund fréttir",
-                Slug = "sund"
+                Name = "hugar frettir",
+                Slug = "hugar-frettir"
             }
         };
         public static List<Author> Authors = new List<Author>
@@ -78,7 +88,7 @@ namespace TechnicalRadiation.Repositories.Data
                 ModifiedDate = DateTime.Now
                 
                 //_links,
-            }/*,            new NewsItem
+            },            new NewsItem
             {
                 Id = NextÍd(),
                 Title = "Þurfa að synda í gegn­um stór­an olíuflekk",
@@ -765,7 +775,7 @@ namespace TechnicalRadiation.Repositories.Data
                 ModifiedDate = DateTime.Now
                 
                 //_links,
-            } */
+            }
 
 
         };

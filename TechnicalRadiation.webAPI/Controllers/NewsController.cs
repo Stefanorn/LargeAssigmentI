@@ -93,20 +93,20 @@ namespace TechnicalRadiation.webAPI.Controllers
             return CreatedAtRoute( "GetNewsById", new { id = news.Id }, null );
         }
 
-        [Route("{categories}")]
+        [Route("categories")]
         [HttpGet]
         public IActionResult GetAllCategories([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 100 ){
             var envelope = new Envelope<CategoryDto>(pageNumber = 1, pageSize, _newsService.GetAllCategories());
             return Ok(envelope.Items);
         }
+
         [Route("categories/{id:int}", Name = "GetCategoryById")]
         [HttpGet]
         public IActionResult GetCategoryById(int id){
             return Ok(_newsService.GetCategoryById(id));
         }
         
-        
-        [Route("{categories")]
+        [Route("categories/")]
         [HttpPost]
         public IActionResult CreateCategory([FromHeader]string AuthorizedCode, [FromBody] CategoryInputModel body){
             if (AuthorizedCode == null || AuthorizedCode != _password){

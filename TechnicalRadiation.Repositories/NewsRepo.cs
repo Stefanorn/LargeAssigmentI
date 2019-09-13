@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using TechnicalRadiation.Models.Dtos;
 using TechnicalRadiation.Models.Entities;
 using TechnicalRadiation.Models.InputModels;
@@ -36,12 +37,12 @@ namespace TechnicalRadiation.Repositories
         }
         public CategoryDto CreateCategory(CategoryInputModel model)
         {
-            var nextId = DataProvider.NewsItemCategoriess.Count;
+            var nextId = DataProvider.categories.Count;
 
             Category newItem = new Category{
                 Id = nextId,
                 Name = model.Name,
-                Slug = model.Name.ToLower(),
+                Slug = GenerateSlug(model.Name),
                 ModifiedBy = "Stefan",
                 CreatedDate = DateTime.Now,
                 ModifiedDate = DateTime.Now
@@ -61,9 +62,16 @@ namespace TechnicalRadiation.Repositories
            }
            entiy.ModifiedDate = DateTime.Now;
            entiy.Name = body.Name;
-           entiy.Slug = body.Name.ToLower();//GenerateSlug(body.Name);
+           entiy.Slug = GenerateSlug(body.Name);
         }
 
+        private string GenerateSlug(string name){
+            name.ToLower();
+             string pattern = " ";
+            var regex = new Regex(pattern);
+
+            return regex.Replace(name, "-");
+        } 
         public NewsItemDto CreateNewNews( NewsItemInputModel model ) {
         
            var nextId = DataProvider.newsItems.Count;
@@ -127,7 +135,6 @@ namespace TechnicalRadiation.Repositories
             entity.PublishDate = input.PublishDate;
             entity.ModifiedDate = DateTime.Now;
         }
-        /* */
         public CategoryDetailDto GetCategoryById(int id)
         {
             var GetCategoryId = DataProvider.categories.FirstOrDefault(r => r.Id == id);

@@ -15,6 +15,7 @@ namespace TechnicalRadiation.webAPI.Controllers
     public class NewsController : ControllerBase
     {
         private NewsService _newsService;
+        private string password = "SecretPassword";
         public NewsController(){
             // TODO Ath mapper
             _newsService = new NewsService();
@@ -53,7 +54,10 @@ namespace TechnicalRadiation.webAPI.Controllers
 //TODO Authorized Routs !! 
         [Route("{id:int}", Name = "GetNewssById")]
         [HttpDelete]
-        public IActionResult DeleteNews(int id){
+        public IActionResult DeleteNews([FromHeader]string AuthorizedCode, int id){
+            if (AuthorizedCode != password){
+                return Forbid();
+            }
             if(!ModelState.IsValid){
                 return BadRequest("input model not valid");
             }
@@ -63,7 +67,10 @@ namespace TechnicalRadiation.webAPI.Controllers
 
         [Route("{id:int}", Name = "GetNewssById")]
         [HttpPut]
-        public IActionResult UpdateNewsById([FromBody] NewsItemInputModel input,  int id){
+        public IActionResult UpdateNewsById([FromHeader]string AuthorizedCode, [FromBody] NewsItemInputModel input,  int id){
+            if (AuthorizedCode != password){
+                return Forbid();
+            }
             if(!ModelState.IsValid){
                 return BadRequest("input model not valid");
             }
@@ -73,7 +80,11 @@ namespace TechnicalRadiation.webAPI.Controllers
 
         [Route("")]
         [HttpPost]
-        public IActionResult CreateNews([FromBody] NewsItemInputModel body){
+        public IActionResult CreateNews([FromHeader]string AuthorizedCode ,[FromBody] NewsItemInputModel body){
+            if (AuthorizedCode != password){
+                return Forbid();
+            }
+
             if(!ModelState.IsValid){
                 return BadRequest("input model not valid");
             }

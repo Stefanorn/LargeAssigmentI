@@ -31,8 +31,8 @@ namespace TechnicalRadiation.Services
                                      new { href = $"/api/{r.Id}" }); 
                 r.Links.AddReference("delete",
                                      new { href = $"/api/{r.Id}" }); 
-               /* r.Links.AddReference("authors", NewsRepo.GetAuthorByNewsId(r.Id).Select(o=> new { href = $"/api/authors/{o.Id}" }); 
-                r.Links.AddReference("categories",
+                /*r.Links.AddReference("authors", NewsRepo.GetAuthorByNewsId(r.Id,4).Select(o=> new { href = $"/api/authors/{o.Id}" }); 
+               /*  r.Links.AddReference("categories",
                                      new { href = $"/api/categories/{r.Id}" });  */
             });
             return news;
@@ -58,9 +58,7 @@ namespace TechnicalRadiation.Services
             _NewsRepo.UpdateNewsById(input , id);
         }
 
-
-
-        public void DeleteNewsById(int id)
+        public void DeleteNewsById( int id)
         {
             _NewsRepo.DeleteNewsById(id);
         }

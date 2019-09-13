@@ -11,7 +11,6 @@ using TechnicalRadiation.Models.Dtos;
 namespace TechnicalRadiation.webAPI.Controllers
 {
     [Route("api")]
- //   [ApiController]
     public class NewsController : ControllerBase
     {
         private NewsService _newsService;
@@ -51,7 +50,6 @@ namespace TechnicalRadiation.webAPI.Controllers
 
 
 
-//TODO Authorized Routs !! 
         [Route("{id:int}", Name = "GetNewssById")]
         [HttpDelete]
         public IActionResult DeleteNews([FromHeader]string AuthorizedCode, int id){

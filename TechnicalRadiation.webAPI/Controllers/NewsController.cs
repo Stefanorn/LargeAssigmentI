@@ -28,7 +28,7 @@ namespace TechnicalRadiation.webAPI.Controllers
             return Ok(envelope.Items);
 
         }
-        [Route("{authors}")]
+        [Route("authors")]
         [HttpGet]
         public IActionResult GetAllAuthors([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 25 ){
 
@@ -124,7 +124,7 @@ namespace TechnicalRadiation.webAPI.Controllers
         }
 
 
-        [Route("{categories}")]
+        [Route("categories")]
         [HttpGet]
         public IActionResult GetAllCategories([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 100 ){
             var envelope = new Envelope<CategoryDto>(pageNumber = 1, pageSize, _newsService.GetAllCategories());
@@ -138,7 +138,7 @@ namespace TechnicalRadiation.webAPI.Controllers
         }
         
         
-        [Route("{categories}")]
+        [Route("categories")]
         [HttpPost]
         public IActionResult CreateCategory([FromHeader]string AuthorizedCode, [FromBody] CategoryInputModel body){
             if (AuthorizedCode == null || AuthorizedCode != _password){
